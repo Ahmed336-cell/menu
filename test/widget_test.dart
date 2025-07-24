@@ -13,7 +13,14 @@ import 'package:menu/main.dart';
 void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: 'fake',
+        appId: 'fake',
+        messagingSenderId: 'fake',
+        projectId: 'fake',
+      ),
+    );
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

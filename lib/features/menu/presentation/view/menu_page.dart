@@ -32,6 +32,10 @@ class MenuPage extends StatelessWidget {
                 Container(
                   height: 180,
                   decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(64),
+                      bottomRight: Radius.circular(0),
+                    ),
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,

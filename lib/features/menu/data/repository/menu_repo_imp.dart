@@ -38,7 +38,7 @@ class MenuRepositoryImpl implements MenuRepository {
           name: 'Beef Tacos',
           price: 10.99,
           description: 'Three soft tacos with seasoned beef, cheese, and salsa',
-          imageUrl: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400',
+          imageUrl: 'https://www.onceuponachef.com/images/2023/08/Beef-Tacos.jpg',
           category: 'Mexican',
         ),
         const FoodItem(
@@ -54,7 +54,7 @@ class MenuRepositoryImpl implements MenuRepository {
           name: 'Pasta Carbonara',
           price: 11.99,
           description: 'Creamy pasta with bacon, egg, and parmesan cheese',
-          imageUrl: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400',
+          imageUrl: 'https://www.laragazzacolmattarello.com/wp-content/uploads/2025/01/pasta-a-la-carbonara.jpg',
           category: 'Pasta',
         ),
       ];

@@ -10,7 +10,13 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: const Text('FoodieApp', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22, letterSpacing: 1.2)),
+      leading: const Icon(
+        Icons.restaurant_menu,
+        size: 32,
+        color:Colors.white
+
+      ),
+      title: const Text('Foodie', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22, letterSpacing: 1.2)),
       actions: [
         IconButton(
           icon: const Icon(Icons.logout, color: Colors.white),

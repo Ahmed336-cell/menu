@@ -24,7 +24,7 @@ class EmailField extends StatelessWidget {
         if (value == null || value.isEmpty) {
           return 'Please enter your email';
         }
-        final emailPattern = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,} 24');
+        final emailPattern = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
         if (!emailPattern.hasMatch(value)) {
           return 'Please enter a valid email address';
         }

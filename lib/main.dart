@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/dp.dart';
 import 'features/auth/presentation/controller/auth_cubit.dart';
 import 'features/auth/presentation/view/auth_page.dart';
-import 'features/menu/presentation/controller/menu_cubit.dart';
 import 'features/menu/presentation/view/menu_page.dart';
 
 
@@ -16,6 +15,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(

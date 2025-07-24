@@ -1,9 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/Failures.dart';
-import 'package:dartz/dartz.dart';
-
 import '../../data/model/food_item.dart';
 import '../../data/repository/menu_repo.dart';
 

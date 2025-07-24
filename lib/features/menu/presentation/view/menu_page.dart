@@ -4,10 +4,7 @@ import 'package:menu/features/menu/presentation/widgets/menu_app_bar.dart';
 import 'package:menu/features/menu/presentation/widgets/menu_cart_fab.dart';
 import 'package:menu/features/menu/presentation/widgets/menu_grid.dart';
 import 'package:menu/features/menu/presentation/widgets/menu_search_bar.dart';
-import '../../../cart/presentation/controller/cart_cubit.dart';
-import '../../data/model/food_item.dart';
 import '../controller/menu_cubit.dart';
-
 class MenuPage extends StatelessWidget {
   final List<String> _categories = const [
     'All', 'Pizza', 'Burgers', 'Salads', 'Mexican', 'Desserts', 'Pasta'
@@ -131,19 +128,6 @@ class MenuPage extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-
-  void _addToCart(FoodItem item, BuildContext context) {
-    context.read<CartCubit>().addItem(item);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${item.name} added to cart'),
-        backgroundColor: const Color(0xFFFF6B35),
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 1),
-      ),
     );
   }
 } 

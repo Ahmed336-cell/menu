@@ -16,7 +16,7 @@ class AuthCard extends StatelessWidget {
   final bool isLoading;
 
   const AuthCard({
-    Key? key,
+    super.key,
     required this.formKey,
     required this.emailController,
     required this.passwordController,
@@ -26,7 +26,7 @@ class AuthCard extends StatelessWidget {
     required this.onToggleLogin,
     required this.onToggleObscure,
     required this.isLoading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class AuthCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.12),
+            color: Colors.black.withValues(alpha: 0.12),
             blurRadius: 32,
             offset: const Offset(0, 16),
           ),

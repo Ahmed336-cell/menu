@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../controller/cart_cubit.dart';
-import '../../data/model/cart_item.dart';
 import '../widgets/cart_item_widget.dart';
 import '../widgets/clear_cart_dialog.dart';
 import '../widgets/empty_cart_widget.dart';

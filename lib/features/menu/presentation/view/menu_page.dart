@@ -7,93 +7,91 @@ import '../../../cart/presentation/view/cart_page.dart';
 import '../../data/model/food_item.dart';
 import '../controller/menu_cubit.dart';
 
-class MenuPage extends StatefulWidget {
-  @override
-  State<MenuPage> createState() => _MenuPageState();
-}
-
-class _MenuPageState extends State<MenuPage> {
+class MenuPage extends StatelessWidget {
   final List<String> _categories = const [
     'All', 'Pizza', 'Burgers', 'Salads', 'Mexican', 'Desserts', 'Pasta'
   ];
-  bool _loaded = false;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_loaded) {
-      context.read<MenuCubit>().loadMenuItems();
-      _loaded = true;
-    }
-  }
+  const MenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
-      appBar: _buildAppBar(context),
-      body: Stack(
-        children: [
-          Container(
-            height: 180,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
-              ),
-            ),
-          ),
-          SafeArea(
-            child: Column(
+    return BlocListener<MenuCubit, MenuState>(
+      listenWhen: (prev, curr) => prev.status == MenuStatus.initial && curr.status != MenuStatus.initial,
+      listener: (context, state) {},
+      child: Builder(
+        builder: (context) {
+          // Trigger loadMenuItems only once when status is initial
+          final status = context.select((MenuCubit cubit) => cubit.state.status);
+          if (status == MenuStatus.initial) {
+            context.read<MenuCubit>().loadMenuItems();
+          }
+          return Scaffold(
+            extendBodyBehindAppBar: true,
+            backgroundColor: Colors.white,
+            appBar: _buildAppBar(context),
+            body: Stack(
               children: [
-                _buildSearchBar(context),
-                _buildCategoryChips(context),
-                Expanded(
-                  child: BlocBuilder<MenuCubit, MenuState>(
-                    builder: (context, state) {
-                      if (state.status == MenuStatus.loading) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (state.status == MenuStatus.error) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-                              const SizedBox(height: 16),
-                              Text(state.error),
-                              const SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () => context.read<MenuCubit>().loadMenuItems(),
-                                child: const Text('Retry'),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else if (state.status == MenuStatus.loaded) {
-                        final filtered = state.items.where((item) {
-                          final matchesCategory = state.selectedCategory == 'All' || item.category == state.selectedCategory;
-                          final matchesSearch = item.name.toLowerCase().contains(state.search.toLowerCase());
-                          return matchesCategory && matchesSearch;
-                        }).toList();
-                        // Debug print
-                        // print('Filtered items: ${filtered.length}');
-                        if (filtered.isEmpty && state.items.isNotEmpty) {
-                          return const Center(child: Text('No items found.'));
-                        }
-                        return _buildMenuGrid(filtered.isEmpty ? state.items : filtered, context);
-                      }
-                      return const SizedBox.shrink();
-                    },
+                Container(
+                  height: 180,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
+                    ),
+                  ),
+                ),
+                SafeArea(
+                  child: Column(
+                    children: [
+                      _buildSearchBar(context),
+                      _buildCategoryChips(context),
+                      Expanded(
+                        child: BlocBuilder<MenuCubit, MenuState>(
+                          builder: (context, state) {
+                            if (state.status == MenuStatus.loading) {
+                              return const Center(child: CircularProgressIndicator());
+                            } else if (state.status == MenuStatus.error) {
+                              return Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+                                    const SizedBox(height: 16),
+                                    Text(state.error),
+                                    const SizedBox(height: 16),
+                                    ElevatedButton(
+                                      onPressed: () => context.read<MenuCubit>().loadMenuItems(),
+                                      child: const Text('Retry'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else if (state.status == MenuStatus.loaded) {
+                              final filtered = state.items.where((item) {
+                                final matchesCategory = state.selectedCategory == 'All' || item.category == state.selectedCategory;
+                                final matchesSearch = item.name.toLowerCase().contains(state.search.toLowerCase());
+                                return matchesCategory && matchesSearch;
+                              }).toList();
+                              if (filtered.isEmpty && state.items.isNotEmpty) {
+                                return const Center(child: Text('No items found.'));
+                              }
+                              return _buildMenuGrid(filtered.isEmpty ? state.items : filtered, context);
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            floatingActionButton: _buildCartFAB(context),
+          );
+        },
       ),
-      floatingActionButton: _buildCartFAB(context),
     );
   }
 

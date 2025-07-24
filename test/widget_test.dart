@@ -11,16 +11,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:menu/main.dart';
 
 void main() {
+
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: 'fake',
-        appId: 'fake',
-        messagingSenderId: 'fake',
-        projectId: 'fake',
-      ),
-    );
+    await Firebase.initializeApp();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

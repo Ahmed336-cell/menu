@@ -21,7 +21,7 @@ class CartUpdated extends CartState {
 }
 
 class CartCubit extends Cubit<CartState> {
-  List<CartItem> _items = [];
+  final List<CartItem> _items = [];
 
   CartCubit() : super(CartInitial());
 

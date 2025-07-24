@@ -18,7 +18,7 @@ class MenuFoodCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: Colors.black.withValues(alpha: 0.10),
             blurRadius: 18,
             offset: const Offset(0, 8),
           ),
@@ -80,7 +80,7 @@ class MenuFoodCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          item.price.toStringAsFixed(2),
+                          "${item.price.toStringAsFixed(2)} EGP",
                           style: const TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,

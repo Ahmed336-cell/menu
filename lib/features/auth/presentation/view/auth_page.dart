@@ -5,7 +5,7 @@ import '../widgets/auth_logo.dart';
 import '../widgets/auth_card.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  const AuthPage({super.key});
   @override
   AuthPageState createState() => AuthPageState();
 }

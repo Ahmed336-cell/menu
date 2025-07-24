@@ -80,7 +80,7 @@ class MenuFoodCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          ' 4${item.price.toStringAsFixed(2)}',
+                          item.price.toStringAsFixed(2),
                           style: const TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,

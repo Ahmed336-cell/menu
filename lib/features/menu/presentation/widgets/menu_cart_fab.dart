@@ -22,9 +22,9 @@ class MenuCartFAB extends StatelessWidget {
               backgroundColor: const Color(0xFFFF6B35),
               label: const Row(
                 children: [
-                  Icon(Icons.shopping_cart),
+                  Icon(Icons.shopping_cart, color: Colors.white60,),
                   SizedBox(width: 8),
-                  Text('Cart'),
+                  Text('Cart' , style: TextStyle(color: Colors.white60)),
                 ],
               ),
             ),

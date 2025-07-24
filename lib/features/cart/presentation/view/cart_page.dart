@@ -63,7 +63,7 @@ class CartPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total: 4${state.totalPrice.toStringAsFixed(2)}',
+                    'Total: ${state.totalPrice.toStringAsFixed(2)}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class CartPage extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            '4${item.foodItem.price.toStringAsFixed(2)}',
+            item.foodItem.price.toStringAsFixed(2),
             style: TextStyle(
               color: Colors.grey.shade600,
               fontSize: 15,
